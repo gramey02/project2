@@ -24,25 +24,50 @@ class Graph:
         
         #breadth first traversal
         
-        visited = [] #queue to store visited nodes
-        queue = [] #general queue
-        Backtrack = [] #queue for storing parent nodes
+        #if no end node, return a list with order of traversal, which will be stored in Backtrack
+        if end==None:
+            visited = [] #queue to store visited nodes
+            queue = [] #general queue
+            Backtrack = [] #queue for storing parent nodes
+
+            queue.append(start) #add start node to the queue
+            vistited.append(start) #mark the start node as visited
+
+            #while there are still nodes in the queue...
+            while queue:
+                cur_node = queue.pop(0) #dequeue the current node
+
+                #for each unvisited neighbor of the current node
+                for nghbr in all_neighbors(self.graph, cur_node):
+                    if nghbr not in visited:
+                        queue.append(nghbr) #add current neighbor to the queue
+                        visited.append(nghbr) #mark current neighbor as visited
+                        Backtrack.append(cur_node) #store the current node as a parent
+            return Backtrack
         
-        queue.append(start) #add start node to the queue
-        vistited.append(start) #mark the start node as visited
+        #if there is an end node, then return the shortest path
+        if (end !=None and has_path(self, start, end)):
+            visited = [] #queue to store visited nodes
+            queue = [] #general queue
+            Backtrack = [] #queue for storing parent nodes
+
+            queue.append(start) #add start node to the queue
+            vistited.append(start) #mark the start node as visited
+
+            #while there are still nodes in the queue...
+            while queue:
+                cur_node = queue.pop(0) #dequeue the current node
+
+                #for each unvisited neighbor of the current node
+                for nghbr in all_neighbors(self.graph, cur_node):
+                    if nghbr not in visited:
+                        queue.append(nghbr) #add current neighbor to the queue
+                        visited.append(nghbr) #mark current neighbor as visited
+                        Backtrack.append(cur_node) #store the current node as a parent
+                        
+        else:
+            return None
         
-        #while there are still nodes in the queue...
-        while queue:
-            cur_node = queue.pop(0) #dequeue the current node
-            
-            #for each unvisited neighbor of the current node
-            for nghbr in all_neighbors(self.graph, cur_node):
-                if nghbr not in visited:
-                    queue.append(nghbr) #add current neighbor to the queue
-                    visited.append(nghbr) #mark current neighbor as visited
-                    Backtrack.append(cur_node) #stor the current node as a parent
-        
-        return
 
 
 
