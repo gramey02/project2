@@ -25,3 +25,5 @@ def test_bfs():
     which should return None. 
     """
     pass
+
+#check if the start or end node is in G
