@@ -23,6 +23,7 @@ class Graph:
         """
         
         #breadth first traversal
+        #need to include the try/except for the IndexError that arises when the queue is empty
         
         #if no end node, return a list with order of traversal, which will be stored in Backtrack
         if end==None:
@@ -38,15 +39,15 @@ class Graph:
                 cur_node = queue.pop(0) #dequeue the current node
 
                 #for each unvisited neighbor of the current node
-                for nghbr in all_neighbors(self.graph, cur_node):
+                for nghbr in self.graph.all_neighbors(self.graph, cur_node):
                     if nghbr not in visited:
                         queue.append(nghbr) #add current neighbor to the queue
                         visited.append(nghbr) #mark current neighbor as visited
                         Backtrack.append(cur_node) #store the current node as a parent
-            return Backtrack
+        return Backtrack
         
         #if there is an end node, then return the shortest path
-        if (end !=None and has_path(self, start, end)):
+        if (end !=None and self.graph.has_path(self.graph, start, end)):
             visited = [] #queue to store visited nodes
             queue = [] #general queue
             Backtrack = [] #queue for storing parent nodes
@@ -56,15 +57,20 @@ class Graph:
 
             #while there are still nodes in the queue...
             while queue:
-                cur_node = queue.pop(0) #dequeue the current node
+                if end in Backtrack:
+                    break
+                else:
+                    cur_node = queue.pop(0) #dequeue the current node
 
                 #for each unvisited neighbor of the current node
-                for nghbr in all_neighbors(self.graph, cur_node):
+                for nghbr in self.graph.all_neighbors(self.graph, cur_node):
                     if nghbr not in visited:
                         queue.append(nghbr) #add current neighbor to the queue
                         visited.append(nghbr) #mark current neighbor as visited
                         Backtrack.append(cur_node) #store the current node as a parent
-                        
+        return Backtrack
+        
+        #if no path exists (checked with has_path earlier) then return None
         else:
             return None
         
