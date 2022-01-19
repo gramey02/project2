@@ -1,6 +1,6 @@
 # write tests for bfs
 import pytest
-from search import Graph
+from search import graph
 
 @pytest.fixture
 def test_bfs_traversal():
