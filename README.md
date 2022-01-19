@@ -1,7 +1,7 @@
 "! [BuildStatus] (https://github.com/gramey02/Project2/workflows/Project2/badge.svg?event=push)"
 
 # Project 2
-Breadth-first search algorithm brief description:
+* Breadth-first search algorithm brief description:
 	* algorithm traverses nodes in a given graph structure
 	* if a start and end node is given to the algorithm, it returns the shortest path between them (if a path exists)
 	* if no path exists between the start and end node, or if the start or end node is not in the given graph, then None is returned
