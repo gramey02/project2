@@ -21,8 +21,7 @@ class Graph:
         * If there is an end node and a path does not exist, return None
 
         """
-        
-        #breadth first traversal
+        #node edge cases
         
         #if there is an end node but either the start or end node is not actually in the graph, return None
         if (end is not None) and (self.graph.has_node(start)==False or self.graph.has_node(end)==False):
@@ -35,6 +34,12 @@ class Graph:
         #if there is an end node but no path exists between the start and end node, return None
         if (end is not None) and (nx.has_path(self.graph, start, end) == False):
             return None
+        
+        
+        
+        
+        
+        #breadth first traversal
         
         #if there is no end node, return a list with order of traversal, which will be stored in Backtrack
         if ((end is None) and (self.graph.has_node(start)==True)):
@@ -58,6 +63,11 @@ class Graph:
                         path[nghbr] = cur_node #store the parent node of the neighbor in the dictionary
             return visited #visited gives the order of traversal
         
+        
+        
+        
+        
+        #breadth first search
         
         #if there is an end node and a path exists between the start and end node, return shortest path
         if ((end is not None) and nx.has_path(self.graph, start, end)):
