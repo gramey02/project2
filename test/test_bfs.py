@@ -13,7 +13,7 @@ def test_bfs_traversal():
     """
     
     filename="./data/tiny_network.adjlist" #get relative file path for mini citation network
-    G=Graph(filename) #create instance of graph class called G
+    G=Graph(filename) #create instance G of the mini citation network
     #assert that all nodes are being traversed
     for node in G.graph.nodes():
         #check that a few random nodes output the right order of traversal
@@ -27,11 +27,11 @@ def test_bfs_traversal():
             assert G.bfs(node)==['32042149', 'Lani Wu', 'Hani Goodarzi', '32790644', '31806696', '31395880', '30727954', '32036252', '33232663', '32025019', '30944313', 'Martin Kampmann', 'Steven Altschuler', 'Luke Gilbert', 'Atul Butte', 'Michael McManus', 'Michael Keiser', 'Charles Chiu', 'Marina Sirota', 'Nevan Krogan', '31626775', '31540829', '33483487', '34272374', '32353859', '33765435', '33242416', '29700475', '31486345', 'Neil Risch']
             
             
-        #assert that all nodes are being traversed if no end node is supplied and no matter the start node
+        #assert that all nodes are being traversed if no end node is supplied and no matter the start node (i.e., length of traversal path is 30)
         assert len(G.bfs(node)) == 30
         
         
-    #assert that, when faced with a node that isn't in the network, None is returned. Use Jill Hollenbach, which is in the other citation graph
+    #assert that, when faced with a node that isn't in the network, None is returned. Use Jill Hollenbach node, which is in the other citation graph
     assert G.bfs("Jill Hollenbach")==None
     
     #assert that, when given a combination of a nonexistent start node and a good end node, or a good start node and a nonexistent end node, None is returned.
@@ -54,7 +54,8 @@ def test_bfs():
     filename="./data/citation_network.adjlist" #get relative file path for full citation network
     G=Graph(filename) #create instance of graph class called G
     
-    #test that giving a start and end node returns the shortest path. Between Marina Sirota and Michael Keiser, the path length should be 3, and assert that the output equals the correct path as well. Here it is tricky because the path length is not unique, so check that the output equals one of the two shortest paths
+    #test that giving a start and end node returns the shortest path. Between Marina Sirota and Michael Keiser, the path length should be 3, and assert that the output equals the correct path as well
+    #Here it is tricky because the path length is not unique, so check that the output equals one of the two shortest paths
     
     assert G.bfs(start="Marina Sirota", end="Michael Keiser")==['Michael Keiser', '31486345', 'Marina Sirota'] or ['Michael Keiser', '30426838', 'Marina Sirota']
     assert len(G.bfs(start="Marina Sirota", end="Michael Keiser"))==3
