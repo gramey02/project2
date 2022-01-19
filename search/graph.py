@@ -63,8 +63,10 @@ class Graph:
                 cur_node = queue.pop(0) #dequeue the current node
                 
                 if cur_node == end:
+                    #the first entry of the shortest path queue will be the end node, the last entry will be start node
+                    shortest_path.append(cur_node) #append the end node to the shortest_path queue
                     while (path.get(cur_node) is not None):
-                        shortest_path.append(path[cur_node]) #traceback the shortest path
+                        shortest_path.append(path[cur_node]) #traceback the shortest path by appending the parent nodes in order
                         cur_node = path[cur_node] #update cur_node variable to be the parent node
                     return shortest_path
 
