@@ -33,14 +33,14 @@ class Graph:
             path = {} #dictionary for storing parent nodes
 
             queue.append(start) #add start node to the queue
-            vistited.append(start) #mark the start node as visited
+            visited.append(start) #mark the start node as visited
 
             #while there are still nodes in the queue...
             while queue:
                 cur_node = queue.pop(0) #dequeue the current node
 
                 #for each unvisited neighbor of the current node...
-                for nghbr in set(nx.all_neighbors(self.graph, cur_node)):
+                for nghbr in set(nx.neighbors(self.graph, cur_node)):
                     if nghbr not in visited:
                         queue.append(nghbr) #add current neighbor to the queue
                         visited.append(nghbr) #mark current neighbor as visited
@@ -71,7 +71,7 @@ class Graph:
                     return shortest_path
 
                 #for each unvisited neighbor of the current node...
-                for nghbr in set(nx.all_neighbors(self.graph, cur_node)):
+                for nghbr in set(nx.neighbors(self.graph, cur_node)):
                     if nghbr not in visited:
                         queue.append(nghbr) #add current neighbor to the queue
                         visited.append(nghbr) #mark current neighbor as visited
