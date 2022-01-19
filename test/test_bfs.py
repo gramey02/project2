@@ -55,10 +55,11 @@ def test_bfs():
     G=Graph(filename) #create instance of graph class called G
     
     #test that giving a start and end node returns the shortest path. Between Nadav Ahituv and Steven Altschuler, the path length should be 5, and assert that the output equals the correct path as well
-    #assert G.bfs(start="Marina Sirota", end="Michael Keiser")==['Michael Keiser', '31486345', 'Marina Sirota']
+    assert G.bfs(start="Marina Sirota", end="Michael Keiser")==['Michael Keiser', '31486345', 'Marina Sirota']
     assert len(G.bfs(start="Nadav Ahituv", end="Steven Altschuler"))==5
     
     #test it one more time with another shortest path. This time, between Mark Ansel and 34957251. Length should be 8.
+    #need to figure out why these assertions are weird
     #assert G.bfs(start="Mark Ansel", end="34957251") == ['34957251', 'Rima Arnaout', '33478654', 'Atul Butte', '32025015', 'Michael McManus', '30566862', 'Mark Ansel']
     assert len(G.bfs(start="Mark Ansel", end="34957251"))==8
     
