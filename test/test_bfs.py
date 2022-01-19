@@ -12,7 +12,7 @@ def test_bfs_traversal():
     the right number of nodes, in the right order, etc.)
     """
     
-    filename="./data/tiny_network.adjlist" #get relative file path
+    filename="./data/tiny_network.adjlist" #get relative file path for mini citation network
     G=Graph(filename) #create instance of graph class called G
     #assert that all nodes are being traversed
     for node in G.graph.nodes():
@@ -35,10 +35,9 @@ def test_bfs_traversal():
     assert G.bfs("Jill Hollenbach")==None
     
     #assert that, when given a combination of a nonexistent start node and a good end node, or a good start node and a nonexistent end node, None is returned.
-    assert G.bfs(start="Jill Hollenbach", end="Michael Keiser")==None
-    assert G.bfs(start="Michael Keiser", end="Jill Hollenbach")==None
+    assert G.bfs(start="Jill Hollenbach", end="Michael Keiser") is None
+    assert G.bfs(start="Michael Keiser", end="Jill Hollenbach") is None
     
-    #now create a dummy network to test if None is returned when a start and end node are supplied that don't have a path between them
 
 def test_bfs():
     """
@@ -51,6 +50,20 @@ def test_bfs():
     Include an additional test for nodes that are not connected 
     which should return None. 
     """
-    pass
-
-#check if the start or end node is in G
+    
+    filename="./data/citation_network.adjlist" #get relative file path for full citation network
+    G=Graph(filename) #create instance of graph class called G
+    
+    #test that giving a start and end node returns the shortest path. Between Nadav Ahituv and Steven Altschuler, the path length should be 5, and assert that the output equals the correct path as well
+    assert G.bfs(start="Nadav Ahituv", end="Steven Altschuler") == ['Steven Altschuler', '29153835', 'Luke Gilbert', '31784727', 'Nadav Ahituv']
+    assert len(G.bfs(start="Nadav Ahituv", end="Steven Altschuler"))==5
+    
+    #test it one more time with another shortest path. This time, between Mark Ansel and 34957251. Length should be 8.
+    assert G.bfs(start="Mark Ansel", end="34957251") == ['34957251', 'Rima Arnaout', '33478654', 'Atul Butte', '32025015', 'Michael McManus', '30566862', 'Mark Ansel']
+    assert len(G.bfs(start="Mark Ansel", end="34957251"))==8
+    
+    #test for a node ("Reza Abbasi-Asl") that is not connected with another ("34729379")
+    assert G.bfs(start="Reza Abbasi-Asl", end="34729379") is None
+    
+    
+    
