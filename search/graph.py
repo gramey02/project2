@@ -57,7 +57,7 @@ class Graph:
             path = {} #dictionary for storing parent nodes
             
             queue.append(start) #add start node to the queue
-            vistited.append(start) #mark the start node as visited
+            visited.append(start) #mark the start node as visited
             
             while queue:
                 cur_node = queue.pop(0) #dequeue the current node
