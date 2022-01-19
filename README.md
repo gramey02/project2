@@ -1,4 +1,4 @@
-[![BuildStatus](https://github.com/gramey02/project2/workflows/project2/badge.svg?event=push)]
+![BuildStatus](https://github.com/gramey02/project2/workflows/project2/badge.svg?event=push)
 
 # Breadth-first Search Algorithm Description
 * Algorithm traverses nodes in a given graph structure, one layer at a time
