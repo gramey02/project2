@@ -29,8 +29,16 @@ def test_bfs_traversal():
             
         #assert that all nodes are being traversed if no end node is supplied and no matter the start node
         assert len(G.bfs(node)) == 30
+        
+        
+    #assert that, when faced with a node that isn't in the network, None is returned. Use Jill Hollenbach, which is in the other citation graph
+    assert G.bfs("Jill Hollenbach")==None
     
-    pass
+    #assert that, when given a combination of a nonexistent start node and a good end node, or a good start node and a nonexistent end node, None is returned.
+    assert G.bfs(start="Jill Hollenbach", end="Michael Keiser")==None
+    assert G.bfs(start="Michael Keiser", end="Jill Hollenbach")==None
+    
+    #now create a dummy network to test if None is returned when a start and end node are supplied that don't have a path between them
 
 def test_bfs():
     """
