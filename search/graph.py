@@ -24,6 +24,18 @@ class Graph:
         
         #breadth first traversal
         
+        #if there is an end node but either the start or end node is not actually in the graph, return None
+        if (end is not None) and (self.graph.has_node(start)==False or self.graph.has_node(end)==False):
+            return None
+        
+        #if there is not an end node but the start node given is not actually in the graph, return None
+        if ((end is None) and self.graph.has_node(start)==False):
+            return None
+        
+        #if there is an end node but no path exists between the start and end node, return None
+        if (end is not None) and (nx.has_path(self.graph, start, end) == False):
+            return None
+        
         #if there is no end node, return a list with order of traversal, which will be stored in Backtrack
         if ((end is None) and (self.graph.has_node(start)==True)):
             
@@ -75,18 +87,5 @@ class Graph:
                         queue.append(nghbr) #add current neighbor to the queue
                         visited.append(nghbr) #mark current neighbor as visited
                         path[nghbr] = cur_node #store the parent node of the neighbor in the dictionary
-            
-        
-        #if there is an end node but no path exists between the start and end node, return None
-        else if (end is not None) and (nx.has_path(self.graph, start, end) == False):
-            return None
-        
-        #if there is an end node but either the start or end node is not actually in the graph, return None
-        else if (end is not None) and (self.graph.has_node(start)==False or self.graph.has_node(end)==False):
-            return None
-        
-        #if there is not an end node but the start node given is not actually in the graph, return None
-        else if ((end is None) and self.graph.has_node(start)==False):
-            return None
 
 
