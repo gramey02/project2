@@ -54,9 +54,10 @@ def test_bfs():
     filename="./data/citation_network.adjlist" #get relative file path for full citation network
     G=Graph(filename) #create instance of graph class called G
     
-    #test that giving a start and end node returns the shortest path. Between Nadav Ahituv and Steven Altschuler, the path length should be 5, and assert that the output equals the correct path as well
-    assert G.bfs(start="Marina Sirota", end="Michael Keiser")==['Michael Keiser', '31486345', 'Marina Sirota']
-    assert len(G.bfs(start="Nadav Ahituv", end="Steven Altschuler"))==5
+    #test that giving a start and end node returns the shortest path. Between Marina Sirota and Michael Keiser, the path length should be 3, and assert that the output equals the correct path as well. Here it is tricky because the path length is not unique, so check that the output equals one of the two shortest paths
+    
+    assert G.bfs(start="Marina Sirota", end="Michael Keiser")==['Michael Keiser', '31486345', 'Marina Sirota'] or ['Michael Keiser', '30426838', 'Marina Sirota']
+    assert len(G.bfs(start="Marina Sirota", end="Michael Keiser"))==3
     
     #test it one more time with another shortest path. This time, between Mark Ansel and 34957251. Length should be 8.
     #need to figure out why these assertions are weird
